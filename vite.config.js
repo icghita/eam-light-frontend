@@ -30,8 +30,23 @@ export default defineConfig(({ mode }) => {
           target: "http://localhost:10880/",
           // target: "http://ammtools.cern.ch:10880/",
         },
-        "/SSO": {
-          target: "http://localhost:10880/",
+        server: {
+            port: parseInt(env.VITE_PORT ?? "3000"),
+            host: "0.0.0.0",
+            proxy: {
+                "/rest": {
+                    target: "http://localhost:10880/",
+                    // target: "http://ammtools.cern.ch:10880/",
+                },
+                "/apis": {
+                    // target: "http://localhost:10880/",
+                    target: "http://ammtools.cern.ch:10880/",
+                },
+                "/SSO": {
+                    target: "http://localhost:10880/",
+                    // target: "http://ammtools.cern.ch:10880/",
+                },
+            },
         },
       },
     },
