@@ -31,7 +31,6 @@ import useApplicationDataStore from "./state/useApplicationDataStore";
 import { renderLoading } from "./ui/pages/EntityTools";
 import useInforContextStore from "./state/useInforContext";
 import useLayoutStore from "./state/useLayoutStore";
-import useMyTeamWorkOrdersStore from "./state/useMyTeamWorkOrdersStore";
 
 export const releaseNotesPath = "/releasenotes";
 
@@ -44,15 +43,13 @@ const Eamlight = () => {
     applicationDataFetchError  
   } = useApplicationDataStore();  
   const { screenLayoutFetchError } = useLayoutStore();  
-  const { fetchMyTeamWorkOrders } = useMyTeamWorkOrdersStore();
 
 const loginMethod = import.meta.env.VITE_LOGIN_METHOD;
 
 useEffect(() => {  
     if (loginMethod !== "STD" || (loginMethod === "STD" && inforContext))  
       fetchUserData();  
-    fetchApplicationData();  
-    fetchMyTeamWorkOrders();  
+    fetchApplicationData();
 }, [inforContext]);
   
   if (!inforContext && loginMethod === "STD") {
